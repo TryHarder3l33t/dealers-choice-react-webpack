@@ -2,17 +2,11 @@
 const Sequelize = require("sequelize");
 const db = new Sequelize(
   process.env.DATABASE_URL ||
-    "postgres://localhost/dealers_choice_react_webpack"
-);
-
-const init = async () => {
-  try {
-    await db.sync({ force: true });
-  } catch (error) {
-    console.log(error);
+    "postgres://localhost/dealers_choice_react_webpack",
+  {
+    //turns gibberish off
+    logging: false,
   }
-};
-
-init();
+);
 
 module.exports = { db, Sequelize };

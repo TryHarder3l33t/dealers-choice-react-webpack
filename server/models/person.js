@@ -1,18 +1,41 @@
 const { db, Sequelize } = require("../db/db");
 
-module.exports = Person;
+const Person = db.define(
+  "person",
+  {
+    character: {
+      type: Sequelize.DataTypes.STRING,
+      allowNull: false,
+    },
+    actor: {
+      type: Sequelize.DataTypes.STRING,
+      allowNull: false,
+    },
+    role: {
+      type: Sequelize.DataTypes.STRING,
+      defaultValue: "Aires",
+    },
+    occupation: {
+      type: Sequelize.DataTypes.STRING,
+      defaultValue: "Customer",
+    },
+  },
 
-const Person = db.define("person", {
-  name: {
-    type: Sequelize.DataTypes.STRING,
-    allowNull: false,
-  },
-  age: {
-    type: Sequelize.DataTypes.STRING,
-    allowNull: false,
-  },
-  sign: {
-    type: Sequelize.DataTypes.STRING,
-    defaultValue: "Aires",
-  },
-});
+  {
+    hooks: {
+      beforeCreate: function (person) {
+        if (!person.occupation) {
+          person.occupation = "Tree Hugger";
+        }
+        console.log(`
+        This is ====>>
+            ${person.character} 
+            ${person.actor} 
+            ${person.role} 
+            ${person.occupation}`);
+      },
+    },
+  }
+);
+
+module.exports = Person;
