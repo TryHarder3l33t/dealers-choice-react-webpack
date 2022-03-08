@@ -7,10 +7,22 @@ const path = require("path");
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log(`Express is listening on port ${port}`);
+  try {
+    console.log(`Express is listening on port ${port}`);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = app;
+
+//parses incoming JSON requests and puts the parsed data in req.body.
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//just sending data no longer sending html in the routes
+//handles the api part of the requuest sends to router in the api/index.js
+app.use("/api", require("./api"));
 
 //If you are looking for dist whatever is after it loook in dist
 app.use("/dist", express.static(path.join(__dirname, "dist")));

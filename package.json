@@ -8,7 +8,8 @@
     "start": "node server.js",
     "start:dev": "nodemon server --ignore src/ --ignore dist/ & npm run build:dev",
     "build": "webpack",
-    "build:dev": "webpack --watch --mode=development"
+    "build:dev": "webpack --watch --mode=development",
+    "seed": "node bin/seed"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/TryHarder3l33t/dealers-choice-react-webpack#readme",
   "dependencies": {
+    "axios": "^0.26.0",
     "express": "^4.17.3",
     "pg": "^8.7.3",
     "sequelize": "^6.17.0"

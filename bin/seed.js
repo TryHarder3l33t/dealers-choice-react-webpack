@@ -26,9 +26,15 @@ const seed = async () => {
     const cliffClavin = await Person.create({
       character: "Cliff Clavin",
       actor: "John Ratzenberger",
-      role: "",
-      occupation: "Mailmain",
     });
+    //close the db
+    db.close();
+    console.log(`
+  
+      Seeding successful!
+      Cheers, now everyone knows your name!
+  
+    `);
     // const b  = await Person.create({
     //   character: "",
     //   actor: "",
@@ -59,4 +65,16 @@ const seed = async () => {
   }
 };
 
-seed();
+//Then promise
+seed().catch((err) => {
+  db.close();
+  console.log(`
+  
+      Error seeding:
+  
+      ${err.message}
+  
+      ${err.stack}
+  
+    `);
+});

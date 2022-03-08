@@ -13,11 +13,11 @@ const Person = db.define(
     },
     role: {
       type: Sequelize.DataTypes.STRING,
-      defaultValue: "Aires",
+      defaultValue: "Customer",
     },
     occupation: {
       type: Sequelize.DataTypes.STRING,
-      defaultValue: "Customer",
+      defaultValue: "Fullstack Student",
     },
   },
 
