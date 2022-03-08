@@ -1,8 +1,10 @@
 //Heroku calls server.js so put you express stuff here dont move it
 
+const { setDefaultResultOrder } = require("dns/promises");
 const express = require("express");
 const app = express();
 const path = require("path");
+const seed = require("./bin/seed");
 
 const port = process.env.PORT || 3000;
 
@@ -30,3 +32,5 @@ app.use("/dist", express.static(path.join(__dirname, "dist")));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
+
+seed();

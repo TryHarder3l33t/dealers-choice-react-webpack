@@ -28,7 +28,7 @@ const seed = async () => {
       actor: "John Ratzenberger",
     });
     //close the db
-    db.close();
+    //db.close();
     console.log(`
   
       Seeding successful!
@@ -66,15 +66,17 @@ const seed = async () => {
 };
 
 //Then promise
-seed().catch((err) => {
-  db.close();
-  console.log(`
-  
-      Error seeding:
-  
-      ${err.message}
-  
-      ${err.stack}
-  
-    `);
-});
+// seed().catch((err) => {
+//   db.close();
+//   console.log(`
+
+//       Error seeding:
+
+//       ${err.message}
+
+//       ${err.stack}
+
+//     `);
+// });
+
+module.exports = seed;
