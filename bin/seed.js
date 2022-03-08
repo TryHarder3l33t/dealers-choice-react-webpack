@@ -32,7 +32,7 @@ const seed = async () => {
     console.log(`
   
       Seeding successful!
-      Cheers, now everyone knows your name!
+      Cheers, now everyone knows your nameeeee!
   
     `);
     // const b  = await Person.create({
