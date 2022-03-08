@@ -1,4 +1,4 @@
-//Heroku calls server.js so put you express stuff here dont move it
+//Heroku calls server.js so put you express stuff here dont move it andddddd your seed call too
 
 const { setDefaultResultOrder } = require("dns/promises");
 const express = require("express");
