@@ -49,13 +49,16 @@ router.delete("/:id", async (req, res) => {
 //TODO
 router.put("/:id", async (req, res) => {
   try {
-    const updatee = Person.findByPk(req.params.id);
+    const updatee = await Person.findByPk(req.params.id);
+    console.log(`This is the update ${updatee.actor}`);
     updatee.set({
       character: req.body.character,
       actor: req.body.actor,
       role: req.body.role,
       occupation: req.body.occupation,
     });
+
+    await updatee.save();
     //res.json(updatee);
   } catch (error) {
     console.log(error);
