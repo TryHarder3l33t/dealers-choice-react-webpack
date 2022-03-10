@@ -2,22 +2,25 @@ import React from "react";
 import axios from "axios";
 import Cast from "./Cast";
 import TheForm from "./Form";
+import OnePerson from "./OnePerson";
 
 export default class Main extends React.Component {
   constructor() {
     super();
     this.state = {
       theData: [],
+      oneData: {},
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
   async componentDidMount() {
     try {
       const { data } = await axios.get("/api/person");
       this.setState({ theData: data });
-      console.log(this.state);
     } catch (error) {}
   }
 
@@ -26,19 +29,36 @@ export default class Main extends React.Component {
     const value = target.value;
     const name = target.name;
     this.setState({ [name]: value });
-    console.log(this.state);
   }
 
   async handleSubmit(event) {
-    console.log(this.state);
+    event.preventDefault();
     await axios.post("/api/person", this.state);
     this.setState({
       character: "ex. Me",
       actor: "ex. Me Again",
       role: "ex. Student",
-      occupation: "ex. Coolest Ice Cube",
+      occupation: "ex. Cool As A Ice Cube",
     });
-    event.preventDefault();
+  }
+  async handleSelect(id) {
+    try {
+      const { data } = await axios.get(`/api/person/${id}`);
+      this.setState({
+        oneData: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async goBack() {
+    try {
+      this.setState({
+        oneData: {},
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -46,12 +66,18 @@ export default class Main extends React.Component {
     return (
       <div>
         <h1>Cheers</h1>
-        <Cast theData={theData} />
-        <TheForm
-          value={this.state.value}
-          onChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
+        {!this.state.oneData.id ? (
+          <div>
+            <Cast theData={theData} handleSelect={this.handleSelect} />
+            <TheForm
+              value={this.state.value}
+              onChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+          </div>
+        ) : (
+          <OnePerson theData={this.state.oneData} goBack={this.goBack} />
+        )}
       </div>
     );
   }

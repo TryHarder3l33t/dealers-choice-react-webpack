@@ -27,56 +27,16 @@ const seed = async () => {
       character: "Cliff Clavin",
       actor: "John Ratzenberger",
     });
-    //close the db
-    //db.close();
+
     console.log(`
   
       Seeding successful!
       Cheers, now everyone knows your nameeeee!
   
     `);
-    // const b  = await Person.create({
-    //   character: "",
-    //   actor: "",
-    //   role: "",
-    //   occupation: "",
-    // });
-
-    // const Person = db.define("person", {
-    //   character: {
-    //     type: Sequelize.DataTypes.STRING,
-    //     allowNull: false,
-    //   },
-    //   actor: {
-    //     type: Sequelize.DataTypes.STRING,
-    //     allowNull: false,
-    //   },
-    //   role: {
-    //     type: Sequelize.DataTypes.STRING,
-    //     defaultValue: "Aires",
-    //   },
-    //   occupation: {
-    //     type: Sequelize.DataTypes.STRING,
-    //     defaultValue: "Customer",
-    //   },
-    // });
   } catch (error) {
     console.log(error);
   }
 };
-
-//Then promise
-// seed().catch((err) => {
-//   db.close();
-//   console.log(`
-
-//       Error seeding:
-
-//       ${err.message}
-
-//       ${err.stack}
-
-//     `);
-// });
 
 module.exports = seed;

@@ -7,12 +7,13 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 
-const Cast = (props) => {
-  const { theData, handleSelect } = props;
+const OnePerson = (props) => {
+  const { theData, goBack } = props;
+  const cast = theData;
 
   return (
     <ul>
-      {theData.map((cast) => (
+      {
         <Box
           key={cast.id}
           sx={{
@@ -20,13 +21,13 @@ const Cast = (props) => {
             flexWrap: "wrap",
             "& > :not(style)": {
               m: 1,
-              width: 250,
+              width: 200,
               height: 200,
             },
           }}
         >
-          <Paper elevation={3} sx={{ minWidth: 200 }}>
-            <Card sx={{ minWidth: 200 }}>
+          <Paper elevation={3} sx={{ minWidth: 300 }}>
+            <Card sx={{ minWidth: 300 }}>
               <CardContent>
                 <Typography
                   sx={{ fontSize: 14 }}
@@ -44,19 +45,20 @@ const Cast = (props) => {
                 <Typography variant="body2">
                   {cast.role}
                   <br />
+                  {cast.occupation}
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button onClick={() => handleSelect(cast.id)} size="small">
-                  Learn More
+                <Button onClick={() => goBack()} size="small">
+                  Go Back
                 </Button>
               </CardActions>
             </Card>
           </Paper>
         </Box>
-      ))}
+      }
     </ul>
   );
 };
 
-export default Cast;
+export default OnePerson;
