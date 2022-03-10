@@ -46,11 +46,10 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//TODO
 router.put("/:id", async (req, res) => {
   try {
     const updatee = await Person.findByPk(req.params.id);
-    console.log(`This is the update ${updatee.actor}`);
+
     updatee.set({
       character: req.body.character,
       actor: req.body.actor,
