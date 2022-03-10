@@ -3,7 +3,7 @@ import React from "react";
 const TheForm = (props) => {
   const { value, onChange, handleSubmit } = props;
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={() => handleSubmit()}>
       <label>Character:</label>
       <br />
       <input name="character" type="text" value={value} onChange={onChange} />

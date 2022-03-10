@@ -34,6 +34,7 @@ const seed = async () => {
       Cheers, now everyone knows your nameeeee!
   
     `);
+    return [samMalone, carlaTorrelli, normPeterson, cliffClavin];
   } catch (error) {
     console.log(error);
   }

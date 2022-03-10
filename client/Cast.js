@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 
 const Cast = (props) => {
-  const { theData, handleSelect } = props;
+  const { theData, handleSelect, handleDelete } = props;
 
   return (
     <ul>
@@ -49,7 +49,16 @@ const Cast = (props) => {
               <CardActions>
                 <Button onClick={() => handleSelect(cast.id)} size="small">
                   Learn More
-                </Button>
+                </Button>{" "}
+                {cast.character !== "Sam Malone" ? (
+                  <Button onClick={() => handleDelete(cast.id)} size="small">
+                    Delete
+                  </Button>
+                ) : (
+                  <div>
+                    <p></p>
+                  </div>
+                )}
               </CardActions>
             </Card>
           </Paper>

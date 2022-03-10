@@ -29,7 +29,18 @@ router.post("/", async (req, res) => {
       role: req.body.role,
       occupation: req.body.occupation,
     });
-    //res.json(data);
+    res.json(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const offTheAir = await Person.findByPk(req.params.id);
+
+    await offTheAir.destroy();
+    console.log(`They are being replaced next season ${req.params.id}`);
   } catch (error) {
     console.log(error);
   }

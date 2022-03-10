@@ -15,6 +15,7 @@ export default class Main extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.goBack = this.goBack.bind(this);
   }
   async componentDidMount() {
@@ -51,6 +52,17 @@ export default class Main extends React.Component {
       console.log(error);
     }
   }
+  async handleDelete(id) {
+    try {
+      const data = this.state.theData.filter((keep) => keep.id !== id);
+      this.setState({
+        theData: data,
+      });
+      await axios.delete(`/api/person/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   async goBack() {
     try {
       this.setState({
@@ -68,7 +80,11 @@ export default class Main extends React.Component {
         <h1>Cheers</h1>
         {!this.state.oneData.id ? (
           <div>
-            <Cast theData={theData} handleSelect={this.handleSelect} />
+            <Cast
+              theData={theData}
+              handleSelect={this.handleSelect}
+              handleDelete={this.handleDelete}
+            />
             <TheForm
               value={this.state.value}
               onChange={this.handleChange}
