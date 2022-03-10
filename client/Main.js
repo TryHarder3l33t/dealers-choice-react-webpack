@@ -32,7 +32,6 @@ export default class Main extends React.Component {
   }
 
   async handleSubmit(event) {
-    event.preventDefault();
     await axios.post("/api/person", this.state);
     this.setState({
       character: "ex. Me",
@@ -40,6 +39,7 @@ export default class Main extends React.Component {
       role: "ex. Student",
       occupation: "ex. Cool As A Ice Cube",
     });
+    event.preventDefault();
   }
   async handleSelect(id) {
     try {
