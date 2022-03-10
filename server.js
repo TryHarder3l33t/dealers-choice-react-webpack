@@ -1,6 +1,6 @@
 //Heroku calls server.js so put you express stuff here dont move it andddddd your seed call too
 
-const { setDefaultResultOrder } = require("dns/promises");
+// const { setDefaultResultOrder } = require("dns/promises");
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -19,7 +19,9 @@ app.listen(port, () => {
 module.exports = app;
 
 //parses incoming JSON requests and puts the parsed data in req.body.
+// parse requests of content-type - application/json
 app.use(express.json());
+// parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
 //just sending data no longer sending html in the routes
